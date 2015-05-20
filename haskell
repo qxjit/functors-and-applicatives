@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ "$(which docker-machine)" != "" ]; then
+  $(docker-machine env dev);
+fi;
+
+docker run \
+  -it \
+  --rm \
+  -v "$PWD":/src \
+  -w /src \
+  haskell:7.10.1 \
+  runhaskell \
+  $1
+
